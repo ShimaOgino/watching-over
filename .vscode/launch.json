@@ -8,6 +8,13 @@
       "type": "java",
       "name": "Launch WatchingOverApplication",
       "request": "launch",
+      "mainClass": "jp.promari.watchingOver.WatchingOverApplication",
+      "projectName": "watching-over"
+    },
+    {
+      "type": "java",
+      "name": "Launch WatchingOverApplication",
+      "request": "launch",
       "mainClass": "jp.promari.demo.WatchingOverApplication",
       "projectName": "watching-over"
     },
