@@ -21,6 +21,8 @@ dependencies {
   implementation("org.springframework.boot:spring-boot-starter-web")
   implementation("io.jsonwebtoken:jjwt:0.2")
   implementation("org.projectlombok:lombok")
+  // https://mvnrepository.com/artifact/org.slf4j/slf4j-api
+  implementation("org.slf4j:slf4j-api:2.0.6")
   implementation("org.springframework.boot:spring-boot-devtools")
 
   // https://mvnrepository.com/artifact/mysql/mysql-connector-java
