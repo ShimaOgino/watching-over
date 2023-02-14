@@ -22,6 +22,10 @@ dependencies {
   implementation("io.jsonwebtoken:jjwt:0.2")
   implementation("org.projectlombok:lombok")
   implementation("org.springframework.boot:spring-boot-devtools")
+
+  // https://mvnrepository.com/artifact/mysql/mysql-connector-java
+  implementation("mysql:mysql-connector-java:8.0.32")
+
   annotationProcessor("org.projectlombok:lombok")
   testImplementation("org.springframework.boot:spring-boot-starter-test")
 }

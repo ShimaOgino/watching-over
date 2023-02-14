@@ -15,7 +15,6 @@ import org.springframework.web.util.WebUtils;
 import jp.promari.watching_over.security.services.UserDetailsImpl;
 import io.jsonwebtoken.*;
 
-@Component
 public class JwtUtils {
     private static final Logger logger = LoggerFactory.getLogger(JwtUtils.class);
 
