@@ -1,5 +1,5 @@
 {
-  "java.compile.nullAnalysis.mode": "disabled",
+  "java.compile.nullAnalysis.mode": "automatic",
   "java.configuration.updateBuildConfiguration": "interactive",
-  "spring-boot.ls.java.home": ""
+  "java.debug.settings.onBuildFailureProceed": true
 }

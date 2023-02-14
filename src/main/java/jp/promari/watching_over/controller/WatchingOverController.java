@@ -1,4 +1,4 @@
-package jp.promari.watchingOver.controller;
+package jp.promari.watching_over.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
