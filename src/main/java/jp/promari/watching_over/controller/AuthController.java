@@ -43,6 +43,9 @@ public class AuthController {
     @Autowired
     PasswordEncoder encoder;
 
+    @Autowired
+    JwtUtils jwtUtils;
+
     /* 引数のloginRequestの情報をもとに処理を行う */
     @PostMapping("/signin") // メソッドとPOSTの処理を行うURLを紐づける
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
@@ -63,8 +66,6 @@ public class AuthController {
         // ユーザー情報の照合
         UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
 
-        // JWtUtil
-        JwtUtils jwtUtils = new JwtUtils();
         // SameSiteを明示する
         ResponseCookie jwtCookie = jwtUtils.generateJwtCookie(userDetails);
 
