@@ -6,7 +6,7 @@ plugins {
 
 group = "jp.promari"
 version = "0.0.1-SNAPSHOT"
-java.sourceCompatibility = JavaVersion.VERSION_19
+java.sourceCompatibility = JavaVersion.VERSION_17
 
 repositories {
 	mavenCentral()
@@ -27,6 +27,17 @@ dependencies {
 
   // https://mvnrepository.com/artifact/mysql/mysql-connector-java
   implementation("mysql:mysql-connector-java:8.0.32")
+
+  // jwt
+  implementation("io.jsonwebtoken:jjwt-api:0.11.5")
+  runtimeOnly("io.jsonwebtoken:jjwt-impl:0.11.5")
+  runtimeOnly("io.jsonwebtoken:jjwt-jackson:0.11.5")
+
+  // JAXB
+  implementation("javax.activation:javax.activation-api:1.2.0")
+  implementation("javax.xml.bind:jaxb-api:2.4.0-b180830.0359")
+  implementation("com.sun.xml.bind:jaxb-core:2.3.0.1")
+  implementation("com.sun.xml.bind:jaxb-impl:2.4.0-b180830.0438")
 
   annotationProcessor("org.projectlombok:lombok")
   testImplementation("org.springframework.boot:spring-boot-starter-test")
