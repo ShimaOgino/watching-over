@@ -1,71 +1,60 @@
 package jp.promari.watching_over.security;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
-import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
-import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-
-import jp.promari.watching_over.security.jwt.AuthEntryPointJwt;
-import jp.promari.watching_over.security.jwt.AuthTokenFilter;
 
 @Configuration
-@EnableMethodSecurity(
-    // securedEnabled = true, Secured アノテーションを有効にする
-    // jsr250Enabled = true,  JSR-250 アノテーションを有効にする
-    prePostEnabled = true) //Spring Security の PreAuthorize、PostAuthorize、PreFilter、PostFilter アノテーションを有効にする
-public class WebSecurityConfig { // SecurityFilterChain をBean定義してセキュリティ設定
-    @Autowired
-    UserDetailsService userDetailsService;
-
-    @Autowired
-    private AuthEntryPointJwt unauthorizedHandler;
-
-    @Autowired
-    public AuthTokenFilter authenticationJwtTokenFilter;
+@EnableWebSecurity
+public class WebSecurityConfig {
 
     @Bean
-    public DaoAuthenticationProvider authenticationProvider() {
-        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        // @formatter:off
 
-        authProvider.setUserDetailsService(userDetailsService);
-        authProvider.setPasswordEncoder(passwordEncoder());
+        // アクセス権限に関する設定
+        http
+            .authorizeHttpRequests(
+                // /はアクセス制限をかけない
+                // // /adminはADMINロールを持つユーザだけアクセス可能
+                (requests) -> requests.requestMatchers("/login").permitAll());
+                // // /userはUSERロールを持つユーザだけアクセス可能
+                // .requestMatchers("/user").hasRole("USER")
+                // それ以外のページは認証が必要
+                //.anyRequest().authenticated()
+            // ).formLogin((form) -> form
+            //     // ログインを実行するページを指定。
+            //     // この設定だと/にPOSTするとログイン処理を行う
+            //     .loginProcessingUrl("/")
+            //     // ログイン画面の設定
+            //     .loginPage("/")
+            //     // ログインに失敗した場合の遷移先
+            //     .failureUrl("/")
+            //     // ユーザIDとパスワードのname設定
+            //     .usernameParameter("username")
+            //     .passwordParameter("password")
+            //     // ログインに成功した場合の遷移先
+            //     .defaultSuccessUrl("/common", true)
+            // ).logout((form) -> form
+            //     // ログアウト処理を行うページ指定、ここにPOSTするとログアウトする
+            //     .logoutUrl("/logout")
+            //     // ログアウトした場合の遷移先
+            //     .logoutSuccessUrl("/")
+            // );
 
-        return authProvider;
+        // @formatter:on
+        return http.build();
     }
 
-    @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) throws Exception {
-        return authConfig.getAuthenticationManager();
-    }
-
+    /**
+     * パスワードのハッシュ化を行うアルゴリズムを返す
+     */
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
-    }
-
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.cors().and().csrf().disable()
-            .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
-            .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-            .authorizeHttpRequests()
-            .anyRequest().authenticated();
-
-        http.authenticationProvider(authenticationProvider());
-
-        http.addFilterBefore(authenticationJwtTokenFilter, UsernamePasswordAuthenticationFilter.class);
-
-        return http.build();
-
     }
 }

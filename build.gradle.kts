@@ -19,6 +19,7 @@ dependencies {
   implementation("org.springframework.boot:spring-boot-starter-security")
   implementation("org.springframework.boot:spring-boot-starter-validation")
   implementation("org.springframework.boot:spring-boot-starter-web")
+  implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
   implementation("io.jsonwebtoken:jjwt:0.2")
   implementation("org.projectlombok:lombok")
   // https://mvnrepository.com/artifact/org.slf4j/slf4j-api
