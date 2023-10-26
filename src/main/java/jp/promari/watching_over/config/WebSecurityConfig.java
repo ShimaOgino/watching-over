@@ -23,7 +23,7 @@ public class WebSecurityConfig {
                 // // /adminはADMINロールを持つユーザだけアクセス可能
                 (requests) -> {
                     requests.requestMatchers("/login").permitAll();
-                    requests.requestMatchers("/login").permitAll();
+                    requests.requestMatchers("/task/*").permitAll();
                 });
                 // // /userはUSERロールを持つユーザだけアクセス可能
                 // .requestMatchers("/user").hasRole("USER")

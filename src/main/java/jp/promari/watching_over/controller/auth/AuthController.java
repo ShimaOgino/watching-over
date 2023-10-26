@@ -17,7 +17,7 @@ public class AuthController {
 
     @GetMapping("/login")
     public String login() {
-        return "login";
+        return "index";
     }
 
     @PostMapping("/login")
@@ -26,12 +26,12 @@ public class AuthController {
         if (user != null) {
             return "redirect:/home";
         } else {
-            return "login";
+            return "Home";
         }
     }
 
     @GetMapping("/home")
     public String home() {
-        return "home";
+        return "Home";
     }
 }

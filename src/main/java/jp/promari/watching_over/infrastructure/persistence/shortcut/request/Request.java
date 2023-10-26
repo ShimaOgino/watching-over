@@ -9,7 +9,7 @@ import org.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import jp.promari.watching_over.config.shortcut.ShortcutProperties;
+import jp.promari.watching_over.config.PromariProperties;
 
 @Component
 public class Request {
@@ -17,7 +17,7 @@ public class Request {
     private final HttpClient client = HttpClients.createDefault();
 
     @Autowired
-    private ShortcutProperties properties;
+    private PromariProperties properties;
 
     public JSONArray execute(String url) {
         try {

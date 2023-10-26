@@ -4,3 +4,20 @@ bin/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
 !**/src/test/**/build/
+
+# Node build artifacts
+node_modules/
+npm-debug.log
+
+# React build artifacts
+frontend/build/
+
+# IDEs and editors
+.idea/
+*.iml
+*.swp
+*.swo
+
+# OS specific
+.DS_Store
+Thumbs.db
