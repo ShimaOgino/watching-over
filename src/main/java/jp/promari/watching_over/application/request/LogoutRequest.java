@@ -1,4 +1,4 @@
-package jp.promari.watching_over.usecase.request;
+package jp.promari.watching_over.application.request;
 
 import jakarta.validation.constraints.NotBlank;
 

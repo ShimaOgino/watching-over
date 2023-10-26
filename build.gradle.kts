@@ -40,6 +40,10 @@ dependencies {
   implementation("com.sun.xml.bind:jaxb-core:2.3.0.1")
   implementation("com.sun.xml.bind:jaxb-impl:2.4.0-b180830.0438")
 
+  // http
+  implementation("org.json:json:20210307")
+  implementation("org.apache.httpcomponents:httpclient:4.5.13")
+
   annotationProcessor("org.projectlombok:lombok")
   testImplementation("org.springframework.boot:spring-boot-starter-test")
 }

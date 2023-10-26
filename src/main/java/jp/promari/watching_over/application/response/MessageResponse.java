@@ -1,4 +1,4 @@
-package jp.promari.watching_over.usecase.response;
+package jp.promari.watching_over.application.response;
 
 public class MessageResponse {
     private String message;

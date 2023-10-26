@@ -16,7 +16,7 @@ import io.jsonwebtoken.SignatureException;
 import io.jsonwebtoken.UnsupportedJwtException;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
-import jp.promari.watching_over.security.services.UserDetailsImpl;
+import jp.promari.watching_over.application.service.UserDetailsImpl;
 
 @Component
 public class JwtUtils {

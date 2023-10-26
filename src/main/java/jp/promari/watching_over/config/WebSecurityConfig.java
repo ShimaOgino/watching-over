@@ -1,4 +1,4 @@
-package jp.promari.watching_over.security;
+package jp.promari.watching_over.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,7 +21,10 @@ public class WebSecurityConfig {
             .authorizeHttpRequests(
                 // /はアクセス制限をかけない
                 // // /adminはADMINロールを持つユーザだけアクセス可能
-                (requests) -> requests.requestMatchers("/login").permitAll());
+                (requests) -> {
+                    requests.requestMatchers("/login").permitAll();
+                    requests.requestMatchers("/login").permitAll();
+                });
                 // // /userはUSERロールを持つユーザだけアクセス可能
                 // .requestMatchers("/user").hasRole("USER")
                 // それ以外のページは認証が必要
