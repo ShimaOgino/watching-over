@@ -1,5 +1,7 @@
 package jp.promari.watching_over.application.service.shortcut;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,5 +16,9 @@ public class TaskService {
 
     public Task getTaskById(String id) {
         return taskRepository.findById(id);
+    }
+
+    public List<Task> retrieveAllTasks() {
+        return taskRepository.getAllTasks();
     }
 }
