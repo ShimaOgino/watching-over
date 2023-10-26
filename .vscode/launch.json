@@ -6,6 +6,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "WatchingOverApplication",
+      "request": "launch",
+      "mainClass": "jp.promari.watching_over.WatchingOverApplication",
+      "projectName": "watching-over"
+    },
+    {
+      "type": "java",
       "name": "Launch WatchingOverApplication",
       "request": "launch",
       "mainClass": "jp.promari.watching_over.WatchingOverApplication",
