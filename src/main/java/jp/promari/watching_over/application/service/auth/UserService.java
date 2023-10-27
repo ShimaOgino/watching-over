@@ -1,5 +1,7 @@
 package jp.promari.watching_over.application.service.auth;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,12 +18,12 @@ public class UserService {
     @Autowired
     private PromariProperties properties;
 
-    public User authenticate(String username, String password) {
+    public Optional<User> authenticate(String username, String password) {
         if (properties.getUsername().equals(username) && properties.getPassword().equals(password)) {
-            // 認証が成功した場合の処理（例：Userオブジェクトを返すなど）
-            return new User(); // この部分は具体的な認証成功時の処理に合わせて変更する。
+            User user = userRepository.findByUsername(username);
+            return Optional.ofNullable(user);
         }
-        return new User();
+        return Optional.empty();
     }
 
     public void register(User user) {
