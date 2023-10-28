@@ -5,8 +5,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import jp.promari.watching_over.config.PromariProperties;
-import jp.promari.watching_over.domain.model.auth.User;
+import jp.promari.watching_over.domain.entity.auth.User;
+import jp.promari.watching_over.domain.model.auth.UserModel;
 import jp.promari.watching_over.domain.repository.auth.UserRepository;
 
 @Service
@@ -15,18 +15,15 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    @Autowired
-    private PromariProperties properties;
-
-    public Optional<User> authenticate(String username, String password) {
-        if (properties.getUsername().equals(username) && properties.getPassword().equals(password)) {
-            User user = userRepository.findByUsername(username);
-            return Optional.ofNullable(user);
-        }
+    public Optional<UserModel> authenticate(String username, String password) {
         return Optional.empty();
     }
 
-    public void register(User user) {
-        userRepository.save(user);
+    private UserModel convertToModel(User entityUser) {
+        UserModel modelUser = new UserModel();
+        modelUser.setId(entityUser.getId());
+        modelUser.setUsername(entityUser.getUsername());
+        modelUser.setEmail(entityUser.getEmail());
+        return modelUser;
     }
 }

@@ -1,13 +1,15 @@
 package jp.promari.watching_over.domain.repository.auth;
 
+import java.util.Optional;
+
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import jp.promari.watching_over.domain.model.auth.User;
+import jp.promari.watching_over.domain.entity.auth.User;
 
 @Repository
-public interface UserRepository {
-    User findByUsername(String username);
-    void save(User user);
+public interface UserRepository extends JpaRepository<User, Long> {
+    Optional<User> findByUsername(String username);
     boolean existsByUsername(String username);
     boolean existsByEmail(String email);
 }
